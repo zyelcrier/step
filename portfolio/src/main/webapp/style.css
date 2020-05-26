@@ -8,6 +8,30 @@
   margin-top: 20px;
 }
 
-#background Color{
-    body{color:#0A696C; background-color:#2D2E2E}
+#wrapper{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:blanchedalmond  ;
 }
+
+header{
+    float: top;
+}
+
+nav{  float:left;
+      width:150px;
+      color: white;
+      background-color: rgb(21, 97, 102);      
+}
+
+nav ul{list-style-type:none; }
+nav a { text-decoration: none;
+        padding: 15px;
+        font-weight:bold;}
+
+
+body{   color:white; 
+        background-color:#0A696C}
+
+
