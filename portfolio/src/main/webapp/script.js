@@ -32,7 +32,7 @@ function addRandomGreeting() {
 function addRandomline() {
     const lines=
         ['Im a peacock you gotta let me fly','just do it','crewmen','clap your hands if you believe', 'FIRE EVERYTHING!','You will be obliterated']
-  // Pick a random greeting.
+  // Pick a random line.
 
 const movieline = lines[Math.floor(Math.random() * lines.length)];
 
