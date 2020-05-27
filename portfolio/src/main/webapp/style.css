@@ -11,7 +11,7 @@ body{
     color:rgb(253, 253, 253);
     text-align:center;
     background-image:url(NewImages/leaf.jpg);
-     }
+}
 
 div{
     background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(95, 141, 95));
@@ -19,7 +19,7 @@ div{
     margin-right:15px;
     margin-left:15px;
 }
-        
+
 header{
     float:top;
     background-size:100% 100%;
