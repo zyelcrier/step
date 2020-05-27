@@ -1,4 +1,5 @@
-#content {
+
+/*#content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
@@ -12,26 +13,50 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    background-color:blanchedalmond  ;
+    background-color:rgb(179, 78, 111)  ;
 }
+*/
 
 header{
     float: top;
+    background-color: rgba(33, 71, 50, 0.897);
+    background-size: 100% 100%;
+    text-align: center;
+}
+header h1{
+    height: 100px;  font-size: 5em;
+    border-radius: 15px;
 }
 
-nav{  float:left;
-      width:150px;
+nav{  float:top;
       color: white;
-      background-color: rgb(21, 97, 102);      
+      background-color: rgb(21, 97, 102);  
+      background-size: 100% 100%;
+      font-size: 3em; 
+      text-align: center;   
 }
 
-nav ul{list-style-type:none; }
-nav a { text-decoration: none;
-        padding: 15px;
-        font-weight:bold;}
+nav a {
+  font-weight: normal;
+  padding: 10px 5px;
+  font-size: .80em;
+}
 
 
-body{   color:white; 
-        background-color:#0A696C}
+a:hover{text-decoration: none;
+        color:silver}
 
 
+body{   color:rgb(209, 242, 243);
+        text-align: center;
+        background-image: url(NewImages/leaf.jpg);
+     }
+        
+
+div{
+    background-color: grey;
+    border-color: black;
+    margin-right:15px;
+    margin-left: 15px;
+    
+}
