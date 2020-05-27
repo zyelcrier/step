@@ -7,34 +7,36 @@
 #greeting-container {
   margin-top: 20px;
 }*/
-body{   color:rgb(253, 253, 253);
-        text-align: center;
-        background-image: url(NewImages/leaf.jpg);
+body{   
+    color:rgb(253, 253, 253);
+    text-align:center;
+    background-image:url(NewImages/leaf.jpg);
      }
 
 div{
     background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(95, 141, 95));
-    border-color: black;
+    border-color:black;
     margin-right:15px;
-    margin-left: 15px;
-    
+    margin-left:15px;
 }
         
 header{
-    float: top;
-    background-size: 100% 100%;
-    text-align: center;
+    float:top;
+    background-size:100% 100%;
+    text-align:center;
 }
 header h1{
-    height: 100px;  font-size: 5em;
-    border-radius: 15px;
+    height:100px;  
+    font-size:5em;
+    border-radius:15px;
 }
 
-nav{  float:top;
-      color: white;
-      background-size: 100% 100%;
-      font-size: 3em; 
-      text-align: center;   
+nav{  
+    float:top;
+    color:white;
+    background-size:100% 100%;
+    font-size:3em; 
+    text-align:center;   
 }
 nav a {
   font-weight: normal;

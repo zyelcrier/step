@@ -19,10 +19,8 @@ function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
 
-  // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-  
-  // Add it to the page.
+
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
@@ -32,10 +30,8 @@ function addRandomline() {
                  'crewmen','clap your hands if you believe', 
                 'FIRE EVERYTHING!','You will be obliterated']
   
-    // Pick a random line.
     const movieline = lines[Math.floor(Math.random() * lines.length)];
 
-    // Add it to the page.
     const lineContainer = document.getElementById('line-container');
     lineContainer.innerText = movieline;
 }
