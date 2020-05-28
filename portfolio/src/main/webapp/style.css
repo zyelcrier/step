@@ -12,9 +12,9 @@ div{
 }
 
 header{
+    text-decoration: underline;
     float:top;
     background-size:100% 100%;
-    text-align:center;
 }
 header h1{
     height:100px;  
@@ -27,7 +27,7 @@ nav{
     color:white;
     background-size:100% 100%;
     font-size:3em; 
-    text-align:center;   
+    word-spacing: 2em;  
 }
 nav a {
   font-weight: normal;
@@ -36,3 +36,4 @@ nav a {
 }
 a:hover{text-decoration: none;
         color:silver}
+
