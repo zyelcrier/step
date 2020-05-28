@@ -44,3 +44,7 @@ function addRandomline() {
   const lineContainer = document.getElementById("line-container");
   lineContainer.innerText = movieline;
 }
+
+
+var familyPhotos = ["bro.jpg", "gran.jpg" ,"fam2.jpg", "su.jpg","fam.jpg","winter.jpg","pa.jpg","cute.jpg","iwon.jpg", "treegang.jpg", "zoom.png"];
+
