@@ -35,3 +35,4 @@ function addRandomline() {
     const lineContainer = document.getElementById('line-container');
     lineContainer.innerText = movieline;
 }
+
