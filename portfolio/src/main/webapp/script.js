@@ -16,23 +16,31 @@
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+  const greetings = [
+    "Hello world!",
+    "¡Hola Mundo!",
+    "你好，世界！",
+    "Bonjour le monde!",
+  ];
 
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
-  const greetingContainer = document.getElementById('greeting-container');
+  const greetingContainer = document.getElementById("greeting-container");
   greetingContainer.innerText = greeting;
 }
 
 function addRandomline() {
-    const lines=['Im a peacock you gotta let me fly','just do it',
-                 'crewmen','clap your hands if you believe', 
-                'FIRE EVERYTHING!','You will be obliterated']
-  
-    const movieline = lines[Math.floor(Math.random() * lines.length)];
+  const lines = [
+    "Im a peacock you gotta let me fly",
+    "just do it",
+    "crewmen",
+    "clap your hands if you believe",
+    "FIRE EVERYTHING!",
+    "You will be obliterated",
+  ];
 
-    const lineContainer = document.getElementById('line-container');
-    lineContainer.innerText = movieline;
+  const movieline = lines[Math.floor(Math.random() * lines.length)];
+
+  const lineContainer = document.getElementById("line-container");
+  lineContainer.innerText = movieline;
 }
-
