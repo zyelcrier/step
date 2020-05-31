@@ -52,8 +52,8 @@ a:focus {
 footer {
   float: bottom;
   background: rgba(0, 0, 0, 0.671);
-  bottom: 0;
-  position: absolute;
+  bottom:0;
+  position:static;
   text-align: left;
   width: 100%;
   height: auto;
@@ -68,7 +68,16 @@ footer {
    margin-right: 60px;
    bottom: 0;
 }
-
+/*Anime.html*/
+#Anime{
+    margin:5px; 
+    padding:5px; 
+    width: 100%; 
+    position: static;
+    height:500px ;
+    overflow: auto; 
+    text-align:justify; 
+}
 .anime {
   border-radius: 8px;
   padding: 25px;
