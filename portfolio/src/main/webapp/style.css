@@ -56,9 +56,19 @@ footer {
   position: absolute;
   text-align: left;
   width: 100%;
-  font-size: 3em;
-  word-spacing: 2em;
+  height: auto;
+  font-size: 2em;
+  
 }
+
+.resize{
+    padding: 15px;
+   width: 30px;
+   margin-left: 60px;
+   margin-right: 60px;
+   bottom: 0;
+}
+
 .anime {
   border-radius: 8px;
   padding: 25px;
