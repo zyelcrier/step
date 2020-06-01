@@ -44,3 +44,34 @@ function addRandomline() {
   const lineContainer = document.getElementById("line-container");
   lineContainer.innerText = movieline;
 }
+
+var i = 0;
+var images = [
+  "family/bro.jpg",
+  "family/cute.jpg",
+  "family/fam.jpg",
+  "family/fam2.jpg",
+  "family/gran.jpg",
+  "family/iwon.jpg",
+  "family/pa.jpg",
+  "family/rain.jpg",
+  "family/su.jpg",
+  "family/train.jpg",
+  "family/tree.jpg",
+  "family/treegang.jpg",
+  "family/winter.jpg",
+  "family/zoom.png",
+];
+var time = 3000;
+
+function changeImg() {
+  document.slide.src = images[i];
+  if (i < images.length - 1) {
+    i++;
+  } else {
+    i = 0;
+  }
+  setTimeout("changeImg()", time);
+}
+
+window.onload = changeImg;

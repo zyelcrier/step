@@ -50,41 +50,39 @@ a:focus {
 }
 
 footer {
-  float: bottom;
   background: rgba(0, 0, 0, 0.671);
-  bottom:0;
-  position:static;
+  bottom: 0;
+  position: static;
   text-align: left;
   width: 100%;
   height: auto;
   font-size: 2em;
-  
 }
 
-.resize{
-    padding: 15px;
-   width: 30px;
-   margin-left: 60px;
-   margin-right: 60px;
-   bottom: 0;
+.resize {
+  padding: 15px;
+  width: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  bottom: 0;
 }
 /*Anime.html*/
-#Anime{
-    margin:5px; 
-    padding:5px; 
-    width: 100%; 
-    position: static;
-    height:500px ;
-    overflow: auto; 
-    text-align:justify; 
+#Anime {
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  position: static;
+  height: 500px;
+  overflow: auto;
+  text-align: justify;
 }
 .anime {
   border-radius: 8px;
   padding: 25px;
   width: 180px;
 }
- #indexList{
-    text-align: left;
+#indexList {
+  text-align: left;
 }
 /*CSS Specific to index.html*/
 #face {
@@ -109,4 +107,13 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+
+ul a {
+  text-decoration: none;
 }
