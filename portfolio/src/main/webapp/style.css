@@ -1,39 +1,119 @@
-body{   
-    color:rgb(253, 253, 253);
-    text-align:center;
-    background-image:url(NewImages/leaf.jpg);
+body {
+  color: rgb(253, 253, 253);
+  background-image: url(NewImages/whitepet.jpg);
+  text-align: center;
 }
 
-div{
-    background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(95, 141, 95));
-    border-color:black;
-    margin-right:15px;
-    margin-left:15px;
+div {
+  background: rgba(0, 0, 0, 0.479);
+  border-color: black;
 }
 
-header{
-    text-decoration: underline;
-    float:top;
-    background-size:100% 100%;
+header {
+  float: top;
 }
-header h1{
-    height:100px;  
-    font-size:5em;
-    border-radius:15px;
+header h1 {
+  text-align: center;
+  height: 100px;
+  font-size: 5em;
+  border-radius: 15px;
 }
 
-nav{  
-    float:top;
-    color:white;
-    background-size:100% 100%;
-    font-size:3em; 
-    word-spacing: 2em;  
+/* Css Specific to nav and anchors*/
+nav {
+  background: rgba(0, 0, 0, 0.671);
+  top: 0;
+  position: absolute;
+  float: top;
+  text-align: left;
+  width: 100%;
+  font-size: 3em;
+  word-spacing: 2em;
 }
 nav a {
+  text-decoration: none;
   font-weight: normal;
-  padding: 10px 5px;
-  font-size: .80em;
+  font-size: 0.8em;
 }
-a:hover{text-decoration: none;
-        color:silver}
+a {
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: silver;
+}
+a:visited {
+  text-decoration: none;
+}
+a:focus {
+  text-decoration: none;
+}
 
+footer {
+  background: rgba(0, 0, 0, 0.671);
+  bottom: 0;
+  position: static;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  font-size: 2em;
+}
+
+.resize {
+  padding: 15px;
+  width: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  bottom: 0;
+}
+/*Anime.html*/
+#Anime {
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  position: static;
+  height: 500px;
+  overflow: auto;
+  text-align: justify;
+}
+.anime {
+  border-radius: 8px;
+  padding: 25px;
+  width: 180px;
+}
+#indexList {
+  text-align: left;
+}
+/*CSS Specific to index.html*/
+#face {
+  border-radius: 50%;
+  padding: 25px;
+  width: 180px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#intro {
+  text-align: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+
+ul a {
+  text-decoration: none;
+}
