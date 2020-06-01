@@ -75,3 +75,10 @@ function changeImg() {
 }
 
 window.onload = changeImg;
+
+async function getRandomQuoteUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const quote = await response.text();
+  document.getElementById('hello-container').innerText = quote;
+}
+
