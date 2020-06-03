@@ -23,14 +23,20 @@ import java.util.*;
 import com.google.gson.Gson ;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/message")
+public class MessageServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello Zyel!");
-    response.getWriter().println("Yay You Figured it out");
+    ArrayList<String> messages= new ArrayList<>();
+    messages.add("First Message");
+    messages.add("Second Message");
+    messages.add("Third Message");
+
+
+    String json = new Gson().toJson(messages);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 
 }
