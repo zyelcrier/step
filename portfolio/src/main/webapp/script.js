@@ -93,3 +93,13 @@ async function getMessages() {
     document.getElementById('message-container').innerText = text;
 }
 
+async function getComments() {
+  const response = await fetch("/comments");
+  const comment = await response.json();
+  var comments = "";
+  for (var i = 0; i < comment.length; i++) {
+    comments += "-"+comment[i]+"\n";
+  }
+  document.getElementById("comment-container").innerText = comments;
+}
+
