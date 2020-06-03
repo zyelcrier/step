@@ -19,8 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-import com.google.gson.Gson ;
+
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -32,5 +31,4 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println("Hello Zyel!");
     response.getWriter().println("Yay You Figured it out");
   }
-
 }
