@@ -66,12 +66,11 @@ footer {
   margin-right: 60px;
   bottom: 0;
 }
-#comment-container{
+#comment-container {
   margin: 5px;
   padding: 5px;
-  width: auto;
   position: static;
-  height: auto;
+  height: 100px;
   overflow: auto;
   text-align: justify;
 }
