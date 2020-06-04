@@ -25,12 +25,12 @@
 			    <button onclick="addRandomGreeting()">Hello</button>
 			    <div id="greeting-container"></div>
 			    <p>Click here to get a random movie line:</p>
-			    <button onclick="addRandomline()">Cick Me</button>
+			    <button onclick="addRandomline()">Click Me</button>
 			    <div id="line-container"></div>
-                <p>Click here to fetch</p>
+                <p>Click here to fetch:</p>
                 <button onclick="getRandomQuoteUsingAsyncAwait()">Hello👋🏽</button>
                 <div id="hello-container"></div>
-                <p>Click here to fetch Json</p>
+                <p>Click here to fetch Json:</p>
                 <button onclick="getMessages()">👋🏽Message</button>
                 <div id="message-container"></div>
 	    </div>
@@ -60,6 +60,18 @@
                 <li><a href="family.html"><h3>Family</h3></a><br> This page is just a Slideshow of family and family friends</li>
             </ul>
         </div>
+    </div>
+    <div>
+        <form action="/comments" method="POST">
+          <p>Comment Below</p>
+          <textarea name="text-input">Type your comment here...</textarea>
+          <br/><br/>
+
+          <input type="submit" />
+        </form>
+        <p>Click here to see Comments on this page<p>
+        <button onclick="getComments()">Comments</button>
+        <div id="comment-container"></div>
     </div>
     <footer>
          <div id="footer-links">
