@@ -15,6 +15,7 @@
 /**
  * Adds a random greeting to the page.
  */
+ var idArray = [];
 function addRandomGreeting() {
   const greetings = [
     "Hello world!",
@@ -45,6 +46,7 @@ function addRandomline() {
   lineContainer.innerText = movieline;
 }
 
+//Slideshow Function
 var i = 0;
 var images = [
   "family/bro.jpg",
@@ -81,6 +83,7 @@ async function getRandomQuoteUsingAsyncAwait() {
   document.getElementById("hello-container").innerText = quote;
 }
 
+//Servlet
 async function getMessages() {
   const response = await fetch("/message");
   const messages = await response.json();
@@ -93,12 +96,34 @@ async function getMessages() {
 }
 
 async function getComments() {
-  const response = await fetch("/comments");
+  const numComments = document.getElementById("user-result").value;
+  const response = await fetch("/comments?user-choice=" + numComments);
   const comment = await response.json();
   var comments = "";
-  console.log(comment);
+//   console.log(comment);
   for (var i = 0; i < comment.length; i++) {
     comments += "-" + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
+}
+
+async function getAllComments(){
+    const response = await fetch("/comments-list");
+    const comment = await response.json();
+    console.log(comment);
+    for(var i=0; i<comment.length; i++){
+        idArray.push(comment[i].id);
+    }
+    console.log(idArray);
+    return idArray;
+}
+
+console.log(idArray);
+
+async function deleteAll(){
+    for(var i=0; i<idArray.length ; i++){
+        const params = new URLSearchParams();
+        params.append('id', idArray[i]);
+        fetch('/delete-data', {method: 'POST', body: params});
+    }
 }
