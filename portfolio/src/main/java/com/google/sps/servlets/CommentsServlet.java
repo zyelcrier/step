@@ -23,12 +23,12 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comments")
@@ -42,13 +42,13 @@ public class CommentsServlet extends HttpServlet {
       PreparedQuery results = datastore.prepare(query);
 
       ArrayList<Comment> comments = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
+      for (Entity entity : results.asIterable()) {
           long id = entity.getKey().getId();
           String text = (String) entity.getProperty("text");
           long timestamp = (long) entity.getProperty("timestamp");
           Comment comment = new Comment(id, text, timestamp);
           comments.add(comment);
-         }
+      }
 
       String json = new Gson().toJson(comments);
       response.setContentType("application/json;");
