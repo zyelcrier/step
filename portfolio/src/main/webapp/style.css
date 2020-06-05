@@ -66,6 +66,14 @@ footer {
   margin-right: 60px;
   bottom: 0;
 }
+#comment-container {
+  margin: 5px;
+  padding: 5px;
+  position: static;
+  height: 100px;
+  overflow: auto;
+  text-align: justify;
+}
 /*Anime.html*/
 #Anime {
   margin: 5px;

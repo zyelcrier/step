@@ -8,7 +8,7 @@
 	<script src="script.js"></script>
 </head>
 
-<body>
+<body onload="getComments()">
 	<header>
 		<h1>Zyel Crier's Portfolio</h1>
 	</header>
@@ -63,15 +63,12 @@
     </div>
     <div>
         <form action="/comments" method="POST">
-          <p>Comment Below</p>
+          <h1>Comment Below</h1>
           <textarea name="text-input">Type your comment here...</textarea>
           <br/><br/>
-
           <input type="submit" />
         </form>
-        <p>Click here to see Comments on this page<p>
-        <button onclick="getComments()">Comments</button>
-        <div id="comment-container"></div>
+        <div id="comment-container"></div> 
     </div>
     <footer>
          <div id="footer-links">

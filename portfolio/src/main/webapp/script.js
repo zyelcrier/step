@@ -76,30 +76,29 @@ function changeImg() {
 
 window.onload = changeImg;
 async function getRandomQuoteUsingAsyncAwait() {
-  const response = await fetch('/data');
+  const response = await fetch("/data");
   const quote = await response.text();
-  document.getElementById('hello-container').innerText = quote;
+  document.getElementById("hello-container").innerText = quote;
 }
 
-
 async function getMessages() {
-    const response = await fetch('/message');
-    const messages = await response.json();
-    var text = "";
-    for (var i = 0; i < messages.length; i++) {
-        text += messages[i];
-    }
-    console.log(`Messages:${text}`);
-    document.getElementById('message-container').innerText = text;
+  const response = await fetch("/message");
+  const messages = await response.json();
+  var text = "";
+  for (var i = 0; i < messages.length; i++) {
+    text += messages[i];
+  }
+  console.log(`Messages:${text}`);
+  document.getElementById("message-container").innerText = text;
 }
 
 async function getComments() {
   const response = await fetch("/comments");
   const comment = await response.json();
   var comments = "";
+  console.log(comment);
   for (var i = 0; i < comment.length; i++) {
-    comments += "-"+comment[i]+"\n";
+    comments += "-" + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
 }
-
