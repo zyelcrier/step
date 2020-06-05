@@ -36,23 +36,23 @@ public class CommentsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
-      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-      PreparedQuery results = datastore.prepare(query);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
 
-      ArrayList<Comment> comments = new ArrayList<>();
-      for (Entity entity : results.asIterable()) {
-          long id = entity.getKey().getId();
-          String text = (String) entity.getProperty("text");
-          long timestamp = (long) entity.getProperty("timestamp");
-          Comment comment = new Comment(id, text, timestamp);
-          comments.add(comment);
-      }
+    ArrayList<Comment> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String text = (String) entity.getProperty("text");
+      long timestamp = (long) entity.getProperty("timestamp");
+      Comment comment = new Comment(id, text, timestamp);
+      comments.add(comment);
+    }
 
-      String json = new Gson().toJson(comments);
-      response.setContentType("application/json;");
-      response.getWriter().println(json);
+    String json = new Gson().toJson(comments);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 
   @Override
