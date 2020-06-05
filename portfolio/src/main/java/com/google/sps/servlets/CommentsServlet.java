@@ -23,12 +23,12 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comments")
@@ -36,41 +36,38 @@ public class CommentsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
-       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-       PreparedQuery results = datastore.prepare(query);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
        
-       int userChoice = getUserChoice(request);
-    //    if (userChoice == -1) {
-    // //    response.setContentType("text/html");
-    // //    response.getWriter().println("Please enter an integer between 1 and 50.");
-    //    return;
-    //    }
+    int userChoice = getUserChoice(request);
+      if (userChoice == -1) {
+        userChoice=1;
+        return;
+      }
 
-       ArrayList<Comment> initialComments = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
-            long id = entity.getKey().getId();
-            String text = (String) entity.getProperty("text");
-            long timestamp = (long) entity.getProperty("timestamp");
-
-            Comment comment = new Comment(id, text, timestamp);
-            initialComments.add(comment);
-         }
-         int numStoreComments = initialComments.size();
-
-       int commentcounter =0;
-       ArrayList<Comment> comments = new ArrayList<>();
-       for(int i=0; i<numStoreComments ;i++){
-           if(commentcounter<userChoice && commentcounter<numStoreComments){
-               comments.add(initialComments.get(i));
-               commentcounter++;
-           }else{break;}
-       }
+    ArrayList<Comment> initialComments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String text = (String) entity.getProperty("text");
+      long timestamp = (long) entity.getProperty("timestamp");
+      Comment comment = new Comment(id, text, timestamp);
+      initialComments.add(comment);
+    }
+    int numStoreComments = initialComments.size();
+    int commentcounter =0;
+    ArrayList<Comment> comments = new ArrayList<>();
+    for(int i=0; i<numStoreComments ;i++){
+      if(commentcounter<userChoice && commentcounter<numStoreComments){
+        comments.add(initialComments.get(i));
+        commentcounter++;
+      }else{break;}
+    }
         
-      String json = new Gson().toJson(comments);
-      response.setContentType("application/json;");
-      response.getWriter().println(json);
+    String json = new Gson().toJson(comments);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
 
    private int getUserChoice(HttpServletRequest request) {
