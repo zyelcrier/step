@@ -16,18 +16,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/delete-data")
 public class Delete extends HttpServlet {
     
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Comment").setKeysOnly();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    long id = Long.parseLong(request.getParameter("id"));
-
-    Key commentEntityKey = KeyFactory.createKey("Comment", id);
-    System.out.print(commentEntityKey);
-    datastore.delete(commentEntityKey);   
-    response.sendRedirect("/index.html");
+    PreparedQuery results = datastore.prepare(query);
+    
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      Key commentEntityKey = KeyFactory.createKey("Comment", id);
+      System.out.print(commentEntityKey);
+      datastore.delete(commentEntityKey); 
+      response.sendRedirect("/index.html");  
     }
+  }
 }

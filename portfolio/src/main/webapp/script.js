@@ -15,7 +15,6 @@
 /**
  * Adds a random greeting to the page.
  */
- var idArray = [];
 function addRandomGreeting() {
   const greetings = [
     "Hello world!",
@@ -99,31 +98,15 @@ async function getComments() {
   const numComments = document.getElementById("user-result").value;
   const response = await fetch("/comments?user-choice=" + numComments);
   const comment = await response.json();
+  console.log(comment);
   var comments = "";
-//   console.log(comment);
   for (var i = 0; i < comment.length; i++) {
     comments += "-" + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
 }
 
-async function getAllComments(){
-    const response = await fetch("/comments-list");
-    const comment = await response.json();
-    console.log(comment);
-    for(var i=0; i<comment.length; i++){
-        idArray.push(comment[i].id);
-    }
-    console.log(idArray);
-    return idArray;
-}
-
-console.log(idArray);
-
-async function deleteAll(){
-    for(var i=0; i<idArray.length ; i++){
-        const params = new URLSearchParams();
-        params.append('id', idArray[i]);
-        fetch('/delete-data', {method: 'POST', body: params});
-    }
+async function deleteAll() {
+  fetch("/delete-data", { method: "POST" });
+  window.location.reload();
 }

@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comments")
 public class CommentsServlet extends HttpServlet {
 
@@ -42,25 +41,21 @@ public class CommentsServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
        
     int userChoice = getUserChoice(request);
-      if (userChoice == -1) {
-        userChoice=1;
-        return;
-      }
-
-    ArrayList<Comment> initialComments = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
-      String text = (String) entity.getProperty("text");
-      long timestamp = (long) entity.getProperty("timestamp");
-      Comment comment = new Comment(id, text, timestamp);
-      initialComments.add(comment);
+    if (userChoice == -1) {
+      response.setContentType("text/html;");
+      response.getWriter().println("Please enter an integer between 1 and 50.");
+      return;
     }
-    int numStoreComments = initialComments.size();
-    int commentcounter =0;
+
     ArrayList<Comment> comments = new ArrayList<>();
-    for(int i=0; i<numStoreComments ;i++){
-      if(commentcounter<userChoice && commentcounter<numStoreComments){
-        comments.add(initialComments.get(i));
+    int commentcounter =0;
+    for (Entity entity : results.asIterable()) {
+      if(commentcounter<userChoice){
+        long id = entity.getKey().getId();
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+        Comment comment = new Comment(id, text, timestamp);
+        comments.add(comment);
         commentcounter++;
       }else{break;}
     }
@@ -88,9 +83,8 @@ public class CommentsServlet extends HttpServlet {
       System.err.println("User's choice is out of range: " + userChoiceString);
       return -1;
     }
-
     return userChoice;
-  }
+   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -112,11 +106,11 @@ public class CommentsServlet extends HttpServlet {
     response.sendRedirect("/index.html");
   }
 
-   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     if (value == null) {
       return defaultValue;
     }
     return value;
-  }
+   }
 }
