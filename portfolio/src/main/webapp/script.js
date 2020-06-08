@@ -45,6 +45,7 @@ function addRandomline() {
   lineContainer.innerText = movieline;
 }
 
+//Slideshow Function
 var i = 0;
 var images = [
   "family/bro.jpg",
@@ -81,6 +82,7 @@ async function getRandomQuoteUsingAsyncAwait() {
   document.getElementById("hello-container").innerText = quote;
 }
 
+//Servlet
 async function getMessages() {
   const response = await fetch("/message");
   const messages = await response.json();
@@ -93,12 +95,18 @@ async function getMessages() {
 }
 
 async function getComments() {
-  const response = await fetch("/comments");
+  const numComments = document.getElementById("user-result").value;
+  const response = await fetch("/comments?user-choice=" + numComments);
   const comment = await response.json();
-  var comments = "";
   console.log(comment);
+  var comments = "";
   for (var i = 0; i < comment.length; i++) {
     comments += "-" + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
+}
+
+async function deleteAll() {
+  fetch("/delete-data", { method: "POST" });
+  window.location.reload();
 }

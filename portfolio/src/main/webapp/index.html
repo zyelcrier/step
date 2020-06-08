@@ -22,16 +22,16 @@
 			    <!--Interactive Buttons -->
 			    <h3> PRESS THE BUTTONS BELOW FOR COOL STUFF</h3>
 			    <p>Click here to get a random message:</p>
-			    <button onclick="addRandomGreeting()">Hello</button>
+			    <button class="click" onclick="addRandomGreeting()">Hello</button>
 			    <div id="greeting-container"></div>
 			    <p>Click here to get a random movie line:</p>
-			    <button onclick="addRandomline()">Click Me</button>
+			    <button class="click" onclick="addRandomline()">Click Me</button>
 			    <div id="line-container"></div>
                 <p>Click here to fetch:</p>
-                <button onclick="getRandomQuoteUsingAsyncAwait()">Hello👋🏽</button>
+                <button class="click" onclick="getRandomQuoteUsingAsyncAwait()">Hello👋🏽</button>
                 <div id="hello-container"></div>
                 <p>Click here to fetch Json:</p>
-                <button onclick="getMessages()">👋🏽Message</button>
+                <button class="click" onclick="getMessages()">👋🏽Message</button>
                 <div id="message-container"></div>
 	    </div>
         <div class="column" id="intro">
@@ -66,9 +66,14 @@
           <h1>Comment Below</h1>
           <textarea name="text-input">Type your comment here...</textarea>
           <br/><br/>
-          <input type="submit" />
+          <input class="click" type="submit" />
         </form>
+        <h2>Select The Amount of Comments</h2>
+        <input type="number" name="user-choice" min="1" max="50" value="3" id="user-result">
+        <br/><br/>
+        <input class="click" onclick="getComments()" type="submit" />
         <div id="comment-container"></div> 
+        <button class="click" method="POST" onclick="deleteAll()">Delete Comments</button>
     </div>
     <footer>
          <div id="footer-links">
