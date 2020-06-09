@@ -102,7 +102,7 @@ async function getComments() {
   console.log(comment);
   var comments = "";
   for (var i = 0; i < comment.length; i++) {
-    comments += "-" + comment[i].text + "\n";
+    comments += "-"+comment[i].email+": " + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
 }
@@ -115,8 +115,16 @@ async function deleteAll() {
 async function loginStatus(){
   const response = await fetch("/login");
   const login= await response.text();
+  document.getElementById("login-container").innerHTML = login;
+  var loginStatus = response.status;
+  console.log(loginStatus);
   console.log(login);
-  if(login.includes("true")){
+  //loginStatus>=200 && loginStatus<=299
+  if(login[0]==1){
     document.getElementById("login").style.display = "block";
-  }   
+  }  
+  else{
+    document.getElementById("hide").classList.add("hide");
+    //console.error(loginStatus)
+  }
 }

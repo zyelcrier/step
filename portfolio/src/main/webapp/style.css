@@ -115,7 +115,7 @@ footer {
   text-align: left;
 }
 /*CSS Specific to index.html*/
-#login{
+.hide{
     display: none;
 }
 #face {

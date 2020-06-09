@@ -61,7 +61,8 @@
             </ul>
         </div>
     </div>
-    <div id="login">
+    <div id="login-container"></div>
+    <div id="login" class="hide">
         <form action="/comments" method="POST">
           <h1>Comment Below</h1>
           <textarea name="text-input">Type your comment here...</textarea>
@@ -73,7 +74,6 @@
         <br/><br/>
         <input class="click" onclick="getComments()" type="submit" />
         <div id="comment-container"></div> 
-        <div id="login"></div>
         <button class="click" method="POST" onclick="deleteAll()">Delete Comments</button>
     </div>
     <footer>
