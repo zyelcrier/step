@@ -76,13 +76,14 @@ function changeImg() {
 }
 
 window.onload = changeImg;
+
+//Servlet
 async function getRandomQuoteUsingAsyncAwait() {
   const response = await fetch("/data");
   const quote = await response.text();
   document.getElementById("hello-container").innerText = quote;
 }
 
-//Servlet
 async function getMessages() {
   const response = await fetch("/message");
   const messages = await response.json();
@@ -90,7 +91,7 @@ async function getMessages() {
   for (var i = 0; i < messages.length; i++) {
     text += messages[i];
   }
-  console.log(`Messages:${text}`);
+  console.log(messages);
   document.getElementById("message-container").innerText = text;
 }
 
@@ -109,4 +110,13 @@ async function getComments() {
 async function deleteAll() {
   fetch("/delete-data", { method: "POST" });
   window.location.reload();
+}
+
+async function loginStatus(){
+  const response = await fetch("/login");
+  const login= await response.text();
+  console.log(login);
+  if(login.includes("true")){
+    document.getElementById("login").style.display = "block";
+  }   
 }

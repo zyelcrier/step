@@ -42,7 +42,7 @@ public class CommentsServlet extends HttpServlet {
        
     int userChoice = getUserChoice(request);
     if (userChoice == -1) {
-      response.setContentType("text/html;");
+      response.setContentType("text/html");
       response.getWriter().println("Please enter an integer between 1 and 50.");
       return;
     }
@@ -61,7 +61,7 @@ public class CommentsServlet extends HttpServlet {
     }
         
     String json = new Gson().toJson(comments);
-    response.setContentType("application/json;");
+    response.setContentType("application/json");
     response.getWriter().println(json);
   }
 
