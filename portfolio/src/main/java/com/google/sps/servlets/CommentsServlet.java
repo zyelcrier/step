@@ -102,10 +102,10 @@ public class CommentsServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", text);
     commentEntity.setProperty("timestamp", timestamp);
-    try{
+    if (userService.isUserLoggedIn()) {
       commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
-    }catch(NullPointerException e){
-      System.err.println("Could not retrieve email. No one logged in.");
+    }else{
+      response.sendError(response.SC_BAD_REQUEST, "User not logged in");
       return;
     }
 
