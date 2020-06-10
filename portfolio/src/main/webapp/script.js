@@ -116,15 +116,12 @@ async function loginStatus(){
   const response = await fetch("/login");
   const login= await response.text();
   document.getElementById("login-container").innerHTML = login;
-  var loginStatus = response.status;
-  console.log(loginStatus);
-  console.log(login);
-  //loginStatus>=200 && loginStatus<=299
-  if(login[0]==1){
+  var lStat = document.getElementById("lStat").innerHTML;
+  console.log("Login Status= "+lStat);
+  if(lStat=="1"){
     document.getElementById("login").style.display = "block";
   }  
   else{
-    document.getElementById("hide").classList.add("hide");
-    //console.error(loginStatus)
+    document.getElementById("login").style.display = "none";
   }
 }
