@@ -76,13 +76,14 @@ function changeImg() {
 }
 
 window.onload = changeImg;
+
+//Servlet
 async function getRandomQuoteUsingAsyncAwait() {
   const response = await fetch("/data");
   const quote = await response.text();
   document.getElementById("hello-container").innerText = quote;
 }
 
-//Servlet
 async function getMessages() {
   const response = await fetch("/message");
   const messages = await response.json();
@@ -90,7 +91,7 @@ async function getMessages() {
   for (var i = 0; i < messages.length; i++) {
     text += messages[i];
   }
-  console.log(`Messages:${text}`);
+  console.log(messages);
   document.getElementById("message-container").innerText = text;
 }
 
@@ -101,7 +102,7 @@ async function getComments() {
   console.log(comment);
   var comments = "";
   for (var i = 0; i < comment.length; i++) {
-    comments += "-" + comment[i].text + "\n";
+    comments += "-"+comment[i].email+": " + comment[i].text + "\n";
   }
   document.getElementById("comment-container").innerText = comments;
 }
@@ -109,4 +110,17 @@ async function getComments() {
 async function deleteAll() {
   fetch("/delete-data", { method: "POST" });
   window.location.reload();
+}
+
+async function loginStatus(){
+  const response = await fetch("/login");
+  const login = await response.text();
+  document.getElementById("login-container").innerHTML = login;
+  console.log(response.status);
+  var responseStat = response.status;
+  if(responseStat>=200 && responseStat<=299){
+    document.getElementById("login");
+  }else{
+    document.getElementById("login").classList.add("hide");
+  }  
 }
