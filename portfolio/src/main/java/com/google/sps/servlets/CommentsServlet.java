@@ -94,8 +94,7 @@ public class CommentsServlet extends HttpServlet {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
     long timestamp = System.currentTimeMillis();
-    //String email = (String)request.getAttribute("email");
-     UserService userService = UserServiceFactory.getUserService();
+    UserService userService = UserServiceFactory.getUserService();
 
     // Respond with the result.
     response.setContentType("text/html;");
@@ -103,7 +102,12 @@ public class CommentsServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", text);
     commentEntity.setProperty("timestamp", timestamp);
-    commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
+    try{
+      commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
+    }catch(NullPointerException e){
+      System.err.println("Could not retrieve email. No one logged in.");
+      return;
+    }
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);

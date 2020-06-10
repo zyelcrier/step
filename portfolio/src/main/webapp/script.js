@@ -114,14 +114,13 @@ async function deleteAll() {
 
 async function loginStatus(){
   const response = await fetch("/login");
-  const login= await response.text();
+  const login = await response.text();
   document.getElementById("login-container").innerHTML = login;
-  var lStat = document.getElementById("lStat").innerHTML;
-  console.log("Login Status= "+lStat);
-  if(lStat=="1"){
-    document.getElementById("login").style.display = "block";
+  console.log(response.status);
+  var responseStat = response.status;
+  if(responseStat>=200 && responseStat<=299){
+    document.getElementById("login");
+  }else{
+    document.getElementById("login").classList.add("hide");
   }  
-  else{
-    document.getElementById("login").style.display = "none";
-  }
 }
