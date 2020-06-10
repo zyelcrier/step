@@ -20,8 +20,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.io.IOException;
@@ -44,7 +42,7 @@ public class CommentsServlet extends HttpServlet {
        
     int userChoice = getUserChoice(request);
     if (userChoice == -1) {
-      response.setContentType("text/html");
+      response.setContentType("text/html;");
       response.getWriter().println("Please enter an integer between 1 and 50.");
       return;
     }
@@ -56,15 +54,14 @@ public class CommentsServlet extends HttpServlet {
         long id = entity.getKey().getId();
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
-        String email = (String) entity.getProperty("email");
-        Comment comment = new Comment(id, text, timestamp,email);
+        Comment comment = new Comment(id, text, timestamp);
         comments.add(comment);
         commentcounter++;
       }else{break;}
     }
         
     String json = new Gson().toJson(comments);
-    response.setContentType("application/json");
+    response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
@@ -94,7 +91,6 @@ public class CommentsServlet extends HttpServlet {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
     long timestamp = System.currentTimeMillis();
-    UserService userService = UserServiceFactory.getUserService();
 
     // Respond with the result.
     response.setContentType("text/html;");
@@ -102,12 +98,6 @@ public class CommentsServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", text);
     commentEntity.setProperty("timestamp", timestamp);
-    try{
-      commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
-    }catch(NullPointerException e){
-      System.err.println("Could not retrieve email. No one logged in.");
-      return;
-    }
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);

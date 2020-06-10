@@ -115,9 +115,6 @@ footer {
   text-align: left;
 }
 /*CSS Specific to index.html*/
-.hide{
-    display: none;
-}
 #face {
   border-radius: 50%;
   padding: 25px;
