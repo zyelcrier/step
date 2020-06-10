@@ -102,11 +102,11 @@ public class CommentsServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("text", text);
     commentEntity.setProperty("timestamp", timestamp);
-    try{
-      commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
-    }catch(NullPointerException e){
-      System.err.println("Could not retrieve email. No one logged in.");
+    if(userService.getCurrentUser().getEmail()==null){
+      response.sendError(response.SC_BAD_REQUEST, "User not logged in");
       return;
+    }else{
+      commentEntity.setProperty("email", userService.getCurrentUser().getEmail());
     }
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
