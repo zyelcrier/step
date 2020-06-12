@@ -124,3 +124,12 @@ async function loginStatus(){
     document.getElementById("login").classList.add("hide");
   }  
 }
+
+function createMap() {
+  const map = new google.maps.Map(document.getElementById('map'),{center: {lat: 29.951065, lng: -90.071533}, zoom: 15});
+  const oregonMarker = new google.maps.Marker({ position: {lat: 44.9428975, lng: -123.0350963},map: map,title: 'Where I lived the last 10 years'});
+  const bornMarker = new google.maps.Marker({ position: {lat: 29.7604267, lng: -95.3698028},map: map,title: 'Where I was Born'});
+  const schoolMarker = new google.maps.Marker({ position: {lat: 29.965219, lng: -90.106994},map: map,title: 'My school'});
+  const childHomeMarker = new google.maps.Marker({ position: {lat: 29.95115500973777, lng: -90.12567419408697},map: map,title: 'My Childhood Home'});
+  const coastHomeMarker = new google.maps.Marker({ position: {lat: 44.95816440000001, lng: -124.0178914},map: map,title: 'My Favorite place'});
+}
