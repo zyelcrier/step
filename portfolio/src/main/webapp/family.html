@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>My Portfolio</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5rkqnUwyeNFUwIjihW1EgFdFdBLBlibk"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="createMap(); changeImg();">
     <header>
       <h1>Family</h1>
     </header>
@@ -15,7 +16,9 @@
       <a href="Anime.html">Anime</a>
       <a href="family.html">Family</a>
     </nav>
-    <div>
+    <div id="div-default">
+      <h3>Map!!Zoom Out To See More About Me!</h3>
+      <div id="map"></div> 
       <h3>Family Slider</h3>
       <img name="slide" width="600" height="600" />
     </div>
