@@ -37,7 +37,7 @@ public final class FindMeetingQuery {
     Collection<Event> result = new ArrayList<Event>();
     for(Event event: events){
       for(String attendee : meetingRequestAttendees){
-        if(event.getAttendees().contains(attendee)){
+        if (event.getAttendees().contains(attendee)){
         result.add(event);
         }
       }    
@@ -52,23 +52,23 @@ public final class FindMeetingQuery {
       boolean isMinuteInEvent = false;
       for(Event event: eventsWithRequestedAttendees){
         isMinuteInEvent = event.getWhen().contains(minute); //if events range does or does not include current minute
-        if(isMinuteInEvent){
+        if (isMinuteInEvent){
           break;
         }
       }
-      if(isMinuteInEvent){//if current minute is within range of current event in loop
-        if(min!=-1){// if min has been set
+      if (isMinuteInEvent){//if current minute is within range of current event in loop
+        if (min!=-1){// if min has been set
           TimeRange foundMeetingRange = TimeRange.fromStartDuration(min,minute-min);
           availabeRanges.add(foundMeetingRange);
           min = -1;
         }
       }
       else{//Establish a start of the time range
-        if(min==-1){
+        if (min==-1){
           min = minute;
         }
         else{
-          if(minute==TimeRange.WHOLE_DAY.end()){
+          if (minute==TimeRange.WHOLE_DAY.end()){
             TimeRange foundMeetingRange = TimeRange.fromStartDuration(min,minute-min);
             availabeRanges.add(foundMeetingRange);
           }
@@ -81,7 +81,7 @@ public final class FindMeetingQuery {
   Collection<TimeRange> findViableTimeRangesForRequest(Collection<TimeRange> availabeRanges , long meetingRequestDuration){
     Collection<TimeRange> result = new ArrayList<TimeRange>();    
     for(TimeRange available: availabeRanges){
-      if(available.duration() >= meetingRequestDuration){
+      if (available.duration() >= meetingRequestDuration){
         result.add(available);    
       }
     }
