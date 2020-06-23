@@ -24,13 +24,29 @@ import java.util.Set;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    Collection<TimeRange> result = new ArrayList<TimeRange>();
     long meetingRequestDuration = request.getDuration();
+    Collection<String> allAttendees = optionalAndRequestedAttendees(request.getAttendees(), request.getOptionalAttendees());
+    Collection<Event> eventsWithAllAttendees = getEventsWithRequestedAttendees(events, allAttendees);
     Collection<Event> eventsWithRequestedAttendees = getEventsWithRequestedAttendees(events, request.getAttendees());
 
-    Collection<TimeRange> availabeRanges = findAllAvailableTimeRanges(eventsWithRequestedAttendees);
-    Collection<TimeRange> result = findViableTimeRangesForRequest(availabeRanges, meetingRequestDuration);
+    Collection<TimeRange> availabeRangesForRequestedAttendees = findAllAvailableTimeRanges(eventsWithRequestedAttendees);
+    Collection<TimeRange> result01 = findViableTimeRangesForRequest(availabeRangesForRequestedAttendees, meetingRequestDuration);
 
+    Collection<TimeRange> availabeRangesForAllAttendees = findAllAvailableTimeRanges(eventsWithAllAttendees);
+    Collection<TimeRange> result02 = findViableTimeRangesForRequest(availabeRangesForAllAttendees, meetingRequestDuration);
+
+    if (result02.size()>=1 || request.getAttendees().isEmpty()){
+      result = result02;    
+    }
+    else{
+      result = result01;
+    }
     return result;
+  }
+
+  Collection<String> optionalAndRequestedAttendees(Collection<String> requestAttendees, Collection<String> requestOptionalAttendees){
+    return new HashSet<String>() {{ addAll(requestAttendees); addAll(requestOptionalAttendees); } }; 
   }
 
   Collection<Event> getEventsWithRequestedAttendees(Collection<Event> events, Collection<String> meetingRequestAttendees){
