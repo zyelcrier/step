@@ -276,8 +276,9 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void allDayEventPersonC() {
-    // Have each person have different events. We should see two options because each person has
-    // split the restricted times.
+    // Based on everyAttendeeIsConsidered, add an optional attendee C who has an all-day event. 
+    // The same three time slots should be returned as when C was not invited.
+    //
     // Events  : |-------------C---------------|
     // Events  :       |--A--|     |--B--|
     // Day     : |-----------------------------|
@@ -292,6 +293,7 @@ public final class FindMeetingQueryTest {
 
     MeetingRequest request =
         new MeetingRequest(Arrays.asList(PERSON_A, PERSON_B), DURATION_30_MINUTES);
+    request.addOptionalAttendee(PERSON_C);
 
     Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected =
@@ -304,19 +306,21 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void optionalAttendeePersonC() {
-    // Have each person have different events. We should see two options because each person has
-    // split the restricted times.
-    // Events  : |-------------C---------------|
+    // Also based on everyAttendeeIsConsidered, add an optional
+    // attendee C who has an event between 8:30 and 9:00. Now only the early and late parts of the day should be returned.
+    //
+    // Events  :          |----C----|
     // Events  :       |--A--|     |--B--|
     // Day     : |-----------------------------|
-    // Options : |--1--|     |--2--|     |--3--|
+    // Options : |--1--|                 |--3--|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartDuration(TIME_0900AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_B)),
-        new Event("Event 3", TimeRange.fromStartDuration(TIME_0830AM,DURATION_30_MINUTES), Arrays.asList(PERSON_C)));
+        new Event("Event 3", TimeRange.fromStartDuration(TIME_0830AM,DURATION_30_MINUTES),
+            Arrays.asList(PERSON_C)));
 
     MeetingRequest request =
         new MeetingRequest(Arrays.asList(PERSON_A, PERSON_B), DURATION_30_MINUTES);
@@ -332,8 +336,8 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void ignoreOptionalAttendeeB() {
-    // Have one person, but make it so that there is just enough room at one point in the day to
-    // have the meeting.
+    // Based on justEnoughRoom, add an optional attendee B who has an event between 8:30 and 8:45.
+    // The optional attendee should be ignored since considering their schedule would result in a time slot smaller than the requested time.
     //
     // Events  : |--A--|--B--|----A----|
     // Day     : |---------------------|
@@ -359,11 +363,12 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void noMandatoryAttendees() {
-    // Have each person have different events. We should see two options because each person has
-    // split the restricted times.
-    // Events  : |--A--|  |-A-|  |--B--|   |-B-|
-    // Day     : |-----------------------------|
-    // Options : |--1--|     |--2--|     |--3--|
+    // No mandatory attendees, just two optional attendees with several
+    // gaps in their schedules. Those gaps should be identified and returned.
+    //
+    // Events  : |---A---|       |-A-|   |--B--|      |-B-|
+    // Day     : |----------------------------------------|
+    // Options :          |--1--|    |-2-|     |--3--|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TimeRange.START_OF_DAY, DURATION_2_HOUR),
@@ -396,12 +401,11 @@ public final class FindMeetingQueryTest {
 
    @Test
   public void noTime() {
-    // Have one person, but make it so that there is just enough room at one point in the day to
-    // have the meeting.
+    // No mandatory attendees, just two optional attendees with no gaps in their schedules.
+    // query should return that no time is available.
     //
-    // Events  : |--A--|--B--|----A----|
+    // Events  : |---------B&A---------|
     // Day     : |---------------------|
-    // Options :       |-----|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, false),
