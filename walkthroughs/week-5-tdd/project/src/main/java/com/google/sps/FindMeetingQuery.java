@@ -31,16 +31,16 @@ public final class FindMeetingQuery {
     Collection<Event> eventsWithRequestedAttendees = getEventsWithRequestedAttendees(events, request.getAttendees());
 
     Collection<TimeRange> availabeTimeRangesForRequestedAttendees = findAllAvailableTimeRanges(eventsWithRequestedAttendees);
-    Collection<TimeRange> result01 = findViableTimeRangesForRequest(availabeTimeRangesForRequestedAttendees, meetingRequestDuration);
+    Collection<TimeRange> resultTimeRangesForRequestedAttendees = findViableTimeRangesForRequest(availabeTimeRangesForRequestedAttendees, meetingRequestDuration);
 
     Collection<TimeRange> availabeRangesForRequestedAndOptionalAttendees = findAllAvailableTimeRanges(eventsWithAllAttendees);
-    Collection<TimeRange> result02 = findViableTimeRangesForRequest(availabeRangesForRequestedAndOptionalAttendees, meetingRequestDuration);
+    Collection<TimeRange> resultTimeRangesForAllAttendees = findViableTimeRangesForRequest(availabeRangesForRequestedAndOptionalAttendees, meetingRequestDuration);
 
-    if (result02.size()>=1 || request.getAttendees().isEmpty()){
-      result = result02;    
+    if (resultTimeRangesForAllAttendees.size()>=1 || request.getAttendees().isEmpty()){
+      result = resultTimeRangesForAllAttendees;    
     }
     else{
-      result = result01;
+      result = resultTimeRangesForRequestedAttendees;
     }
     return result;
   }
